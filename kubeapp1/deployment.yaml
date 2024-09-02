@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeapp1
+  namespace: app1
+  labels:
+    app: kubeapp1
+spec:
+  selector:
+    matchLabels:
+      app: kubeapp1
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      namespace: app1
+      labels:
+        app: kubeapp1
+    spec:
+      containers:
+        - name: app
+          image: kubeapp1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8890
