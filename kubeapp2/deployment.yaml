@@ -26,6 +26,6 @@ spec:
       containers:
         - name: app
           image: kubeapp2
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8891
